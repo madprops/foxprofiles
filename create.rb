@@ -33,5 +33,6 @@ FileUtils.cp_r(dirbase("chrome"), dirpath("chrome"))
 FileUtils.cp_r(dirbase("extensions"), dirpath("extensions"))
 FileUtils.cp(dirbase("user.js"), dirpath("user.js"))
 
+puts "Profile ready: #{$path}"
 puts "Launching Firefox..."
 `#{firefox} -P "#{name}"`
