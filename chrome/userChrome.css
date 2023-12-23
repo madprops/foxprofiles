@@ -1,0 +1,15 @@
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+#sidebar-header {
+  display: none !important;
+}
+
+#sidebar-search-container {
+  display: none !important;
+}
+
+#sidebar-splitter {
+  width: 2px !important;
+}
