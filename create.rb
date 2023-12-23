@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-if ARGV.length < 1
+if ARGV.empty?
 	puts "Usage: create.rb <profile_name>"
 	exit
 end
