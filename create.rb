@@ -25,14 +25,11 @@ def dirpath(d)
 	File.join($path, d)
 end
 
-puts "Creating profile..."
 `#{firefox} -CreateProfile "#{name} #{$path}"`
 
-puts "Copying files..."
 FileUtils.cp_r(dirbase("chrome"), dirpath("chrome"))
 FileUtils.cp_r(dirbase("extensions"), dirpath("extensions"))
 FileUtils.cp(dirbase("user.js"), dirpath("user.js"))
 
-puts "Profile ready: #{$path}"
-puts "Launching Firefox..."
+puts "Profile created: #{$path}"
 `#{firefox} -P "#{name}"`
