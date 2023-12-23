@@ -7,24 +7,23 @@ if ARGV.empty?
 end
 
 name = ARGV[0]
+firefox = "firefox-developer-edition"
 base = File.dirname(File.expand_path(__FILE__))
 profiles = File.join(Dir.home, "foxprofiles")
-firefox = "firefox-developer-edition"
+path = File.join(profiles, name)
 
 unless File.directory?(profiles)
 	FileUtils.mkdir_p(profiles)
 	puts "Created: #{profiles}"
 end
 
-path = File.join(profiles, name)
-
 puts "Creating profile..."
 `#{firefox} -CreateProfile "#{name} #{path}"`
 
 puts "Copying files..."
-`cp -R #{base}/chrome #{path}/.`
-`cp -R #{base}/extensions #{path}/.`
-`cp #{base}/user.js #{path}/user.js`
+FileUtils.cp_r(File.join(base, "chrome"), File.join(path, "chrome"))
+FileUtils.cp_r(File.join(base, "extensions"), File.join(path, "extensions"))
+FileUtils.cp(File.join(base, "user.js"), File.join(path, "user.js"))
 
 puts "Launching Firefox..."
 `#{firefox} -P "#{name}"`
